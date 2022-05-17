@@ -35,6 +35,7 @@ const schema = new Schema({
         type: Array,
         required: true,
     },
+    type: String,
 });
 
 module.exports = model('Movie', schema);

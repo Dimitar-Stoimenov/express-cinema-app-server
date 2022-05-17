@@ -11,9 +11,13 @@ async function create(data) {
     return result;
 }
 
+async function getById(id) {
+    return Movie.findById(id);
+}
+
 module.exports = {
     getAll,
-    // getById,
+    getById,
     create,
     // update,
     // remove,

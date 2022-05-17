@@ -1,12 +1,18 @@
 const router = require('express').Router();
 
-const { getAll, create } = require('../services/movies');
+const { getAll, create, getById } = require('../services/movies');
 const { parseError } = require('../util');
 
 router.get('/', async (req, res) => {
     const data = await getAll();
 
     res.json(data);
+});
+
+router.get('/:id', async (req, res) => {
+    const movie = await getById(req.params.id)
+
+    res.json(movie);
 });
 
 router.get('/top-movies', async (req, res) => {
@@ -35,6 +41,7 @@ router.post('/create', async (req, res) => {
         director: req.body.director,
         premiere: req.body.premiere,
         length: req.body.length,
+        type: req.body.type,
         cast: req.body.cast.split(',').map(x => x.trim()), //separate by coma
         movieRating: [],
         voters: [],
