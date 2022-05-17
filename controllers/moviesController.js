@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAll, create, getById } = require('../services/movies');
+const { getAll, create, getById, update } = require('../services/movies');
 const { parseError } = require('../util');
 
 router.get('/', async (req, res) => {
@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const movie = await getById(req.params.id)
+    const movie = await getById(req.params.id);
 
     res.json(movie);
 });
@@ -43,7 +43,7 @@ router.post('/create', async (req, res) => {
         length: req.body.length,
         type: req.body.type,
         cast: req.body.cast.split(',').map(x => x.trim()), //separate by coma
-        movieRating: [],
+        movieRating: req.body.movieRating,
         voters: [],
     };
 
@@ -51,6 +51,31 @@ router.post('/create', async (req, res) => {
         const result = await create(data);
 
         res.status(201).json(result);
+    } catch (err) {
+        const message = parseError(err);
+        res.status(err.status || 400).json({ message });
+    }
+});
+
+router.put('/:id/rate', async (req, res) => {
+    const movie = await getById(req.params.id);
+    
+    let updatedMovie = Object.create(movie);
+
+    const data = {        
+        movieRating: Number(req.body.rating),
+        user: req.body.user,
+    };
+
+    let votersCount = Number(movie.voters.length);
+    let newRating = (((movie.movieRating * votersCount) + data.movieRating) / (votersCount + 1)).toFixed(2);
+    updatedMovie.voters.push(data.user);
+    updatedMovie.movieRating = newRating;
+
+    try {
+        const result = await update(movie, updatedMovie);
+
+        res.status(200).json(result);
     } catch (err) {
         const message = parseError(err);
         res.status(err.status || 400).json({ message });

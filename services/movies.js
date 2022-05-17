@@ -11,6 +11,13 @@ async function create(data) {
     return result;
 }
 
+async function update(original, updated) {
+    Object.assign(original, updated);
+    await original.save();
+
+    return original;
+}
+
 async function getById(id) {
     return Movie.findById(id);
 }
@@ -19,6 +26,6 @@ module.exports = {
     getAll,
     getById,
     create,
-    // update,
+    update,
     // remove,
 };

@@ -28,14 +28,13 @@ const schema = new Schema({
     },
     cast: [String],
     movieRating: {
-        type: Array,
+        type: Number,
         required: true,
     },
     voters: {
         type: Array,
         required: true,
     },
-    type: String,
 });
 
 module.exports = model('Movie', schema);
