@@ -5,6 +5,8 @@ const cors = require('./middlewares/cors');
 const { PORT, DB_CONNECTION_STRING } = require('./constants.js');
 
 const moviesController = require('./controllers/moviesController');
+const hallsController = require('./controllers/hallsController');
+const projectionsController = require('./controllers/projectionsController');
 
 start();
 
@@ -26,6 +28,8 @@ async function start() {
     app.use(express.json());
 
     app.use('/movies', moviesController);
+    app.use('/halls', hallsController);
+    app.use('/projections', projectionsController);
 
     app.get('/', (req, res) => {
         res.send('It works!');
