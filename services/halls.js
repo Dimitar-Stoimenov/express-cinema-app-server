@@ -7,6 +7,11 @@ async function create(data) {
     return result;
 }
 
+async function getAll() {
+    return Hall.find({}).lean();
+}
+
 module.exports = {
-    create
+    create,
+    getAll,
 };

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { create } = require('../services/halls');
+const { create, getAll } = require('../services/halls');
 const { parseError } = require('../util');
 
 
@@ -29,6 +29,12 @@ router.post('/create', async (req, res) => {
         const message = parseError(err);
         res.status(err.status || 400).json({ message });
     }
+});
+
+router.get('/', async (req, res) => {
+    const data = await getAll();
+
+    res.json(data);
 });
 
 module.exports = router;
