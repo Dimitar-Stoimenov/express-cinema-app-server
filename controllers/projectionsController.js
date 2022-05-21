@@ -8,7 +8,7 @@ router.get('/program/:date', async (req, res) => {
 
     var d = new Date(date);
     d.setTime(d.getTime() + d.getTimezoneOffset() * 60 * 1000 /* convert to UTC */ + (/* UTC+6 */ 6) * 60 * 60 * 1000);
-
+    
     const data = await getProjectionsByDate(d);
 
     res.json(data);
