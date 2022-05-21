@@ -18,16 +18,16 @@ const schema = new Schema({
         ref: 'Hall',
     },
     occupiedSeats: {
-        "row1": [Number],
-        "row2": [Number],
-        "row3": [Number],
-        "row4": [Number],
-        "row5": [Number],
-        "row6": [Number],
-        "row7": [Number],
-        "row8": [Number],
-        "row9": [Number],
-        "row10": [Number],
+        "row1": [],
+        "row2": [],
+        "row3": [],
+        "row4": [],
+        "row5": [],
+        "row6": [],
+        "row7": [],
+        "row8": [],
+        "row9": [],
+        "row10": [],
     }
 });
 
