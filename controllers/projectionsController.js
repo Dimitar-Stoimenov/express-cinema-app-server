@@ -1,8 +1,18 @@
 const router = require('express').Router();
 
-const { create } = require('../services/projections');
-const { parseError } = require('../util');
+const { create, getProjectionsByDate } = require('../services/projections');
+const { parseError, standartizeDate } = require('../util');
 
+router.get('/program/:date', async (req, res) => {
+    const date = standartizeDate(req.params.date);
+
+    var d = new Date(date);
+    d.setTime(d.getTime() + d.getTimezoneOffset() * 60 * 1000 /* convert to UTC */ + (/* UTC+6 */ 6) * 60 * 60 * 1000);
+
+    const data = await getProjectionsByDate(d);
+
+    res.json(data);
+});
 
 router.post('/create', async (req, res) => {
     const data = {
