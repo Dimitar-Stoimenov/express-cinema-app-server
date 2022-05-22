@@ -8,7 +8,7 @@ router.get('/program/:date', async (req, res) => {
 
     var d = new Date(date);
     d.setTime(d.getTime() + d.getTimezoneOffset() * 60 * 1000 /* convert to UTC */ + (/* UTC+6 */ 6) * 60 * 60 * 1000);
-    
+
     const data = await getProjectionsByDate(d);
 
     res.json(data);
@@ -20,6 +20,10 @@ router.post('/create', async (req, res) => {
         hour: req.body.hour,
         movieId: req.body.movieId,
         hallId: req.body.hallId,
+        price: {
+            regular: req.body.regularPrice,
+            students: req.body.studentsPrice
+        },
         occupiedSeats: {
             row1: [],
             row2: [],

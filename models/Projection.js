@@ -17,6 +17,10 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Hall',
     },
+    price: {
+        regular: Number,
+        students: Number,
+    },
     occupiedSeats: {
         "row1": [],
         "row2": [],
