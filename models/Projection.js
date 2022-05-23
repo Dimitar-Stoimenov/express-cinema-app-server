@@ -12,10 +12,12 @@ const schema = new Schema({
     movieId: {
         type: Schema.Types.ObjectId,
         ref: 'Movie',
+        autopopulate: true,
     },
     hallId: {
         type: Schema.Types.ObjectId,
         ref: 'Hall',
+        autopopulate: true,
     },
     price: {
         regular: Number,
@@ -34,5 +36,7 @@ const schema = new Schema({
         "row10": [],
     }
 });
+
+schema.plugin(require('mongoose-autopopulate'));
 
 module.exports = model('Projection', schema);
