@@ -39,7 +39,7 @@ router.post('/create', async (req, res) => {
     };
 
     try {
-        const result = await create(data);
+        const result = await create(data);  
 
         res.status(201).json(result);
     } catch (err) {

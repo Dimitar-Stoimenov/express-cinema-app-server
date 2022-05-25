@@ -7,6 +7,7 @@ const { PORT, DB_CONNECTION_STRING } = require('./constants.js');
 const moviesController = require('./controllers/moviesController');
 const hallsController = require('./controllers/hallsController');
 const projectionsController = require('./controllers/projectionsController');
+const { autoCreateProjectionsFiveDaysInAdvance } = require('./services/autoCreateProjections');
 
 start();
 
@@ -34,6 +35,8 @@ async function start() {
     app.get('/', (req, res) => {
         res.send('It works!');
     });
+
+    // autoCreateProjectionsFiveDaysInAdvance();
 
     app.listen(PORT, () => console.log(`REST Service is running on port ${PORT}...`));
 }
