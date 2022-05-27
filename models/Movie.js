@@ -15,10 +15,7 @@ const schema = new Schema({
         required: [true, 'Description is required'],
         minlength: [10, 'Description must be atleast 10 characters long'],
     },
-    genres: {
-        type: String,
-        type: Array,
-    },
+    genres: [String],
     director: String,
     movieCategory: String,
     premiere: String,
@@ -27,14 +24,8 @@ const schema = new Schema({
         required: [true, 'Length is required'],
     },
     cast: [String],
-    movieRating: {
-        type: Number,
-        required: true,
-    },
-    voters: {
-        type: Array,
-        required: true,
-    },
+    movieRating: Number,
+    voters: [String],
     movieType: String,
 });
 

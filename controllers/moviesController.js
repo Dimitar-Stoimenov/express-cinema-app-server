@@ -3,6 +3,32 @@ const router = require('express').Router();
 const { getAll, create, getById, update, getTop, getClassic, getFamily } = require('../services/movies');
 const { parseError } = require('../util');
 
+router.post('/create', async (req, res) => {
+    const data = {
+        movieName: req.body.movieName,
+        posterLink: req.body.posterLink,
+        description: req.body.description,
+        movieCategory: req.body.movieCategory,
+        genres: req.body.genres.split(', ').map(x => x.trim()), //separate by coma
+        director: req.body.director,
+        premiere: req.body.premiere,
+        length: req.body.length,
+        movieType: req.body.movieType,
+        cast: req.body.cast.split(',').map(x => x.trim()), //separate by coma
+        movieRating: 4,
+        voters: ["dummy"],
+    };
+
+    try {
+        const result = await create(data);
+
+        res.status(201).json(result);
+    } catch (err) {
+        const message = parseError(err);
+        res.status(err.status || 400).json({ message });
+    }
+});
+
 router.get('/', async (req, res) => {
     const data = await getAll();
 
@@ -27,36 +53,10 @@ router.get('/family-movies', async (req, res) => {
     res.json(data);
 });
 
-router.use('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const movie = await getById(req.params.id);
 
     res.json(movie);
-});
-
-router.post('/create', async (req, res) => {
-    const data = {
-        movieName: req.body.movieName,
-        posterLink: req.body.posterLink,
-        description: req.body.description,
-        movieCategory: req.body.movieCategory,
-        genres: req.body.genres.split(', ').map(x => x.trim()), //separate by coma
-        director: req.body.director,
-        premiere: req.body.premiere,
-        length: req.body.length,
-        movieType: req.body.movieType,
-        cast: req.body.cast.split(',').map(x => x.trim()), //separate by coma
-        movieRating: req.body.movieRating,
-        voters: [],
-    };
-
-    try {
-        const result = await create(data);
-
-        res.status(201).json(result);
-    } catch (err) {
-        const message = parseError(err);
-        res.status(err.status || 400).json({ message });
-    }
 });
 
 router.put('/:id/rate', async (req, res) => {
