@@ -7,6 +7,10 @@ const movies = {
     "Interstellar": "6283f54e8894d98659d3a26e",
     "Justice League": "6283f7998894d98659d3a275",
     "Doctor Strange": "6283f9498894d98659d3a280",
+    "Space Jam 2": "6290c7de2ad2c73e309c8023",
+    "SpongeBob": "6290cf1a2ad2c73e309c8031",
+    "Spider-Man: No Way Home": "6290c4612ad2c73e309c7fbe",
+    "A Star Is Born": "6290d1c42ad2c73e309c803c",
 }
 
 const halls = {
@@ -27,9 +31,9 @@ const autoCreateProjectionsFiveDaysInAdvance = () => {
 
     } else if (dayOfweek === 1) { // MONDAY
         createMovie(halls["2D-A"], movies["Shrek"], fiveDaysAfter, 1600, 12, 10);
-        createMovie(halls["2D-A"], movies["Justice League"], fiveDaysAfter, 1830, 12, 10);
-        createMovie(halls["2D-A"], movies["Inception"], fiveDaysAfter, 2100, 12, 10);
-        createMovie(halls["2D-B"], movies["Shrek"], fiveDaysAfter, 1730, 12, 10);
+        // createMovie(halls["2D-A"], movies["Justice League"], fiveDaysAfter, 1830, 12, 10);
+        // createMovie(halls["2D-A"], movies["Inception"], fiveDaysAfter, 2100, 12, 10);
+        createMovie(halls["2D-B"], movies["Space Jam 2"], fiveDaysAfter, 1730, 12, 10);
         createMovie(halls["2D-B"], movies["Justice League"], fiveDaysAfter, 2000, 12, 10);
         createMovie(halls["2D-B"], movies["Interstellar"], fiveDaysAfter, 2230, 12, 10);
         createMovie(halls["2D-C"], movies["Doctor Strange"], fiveDaysAfter, 1600, 12, 10);
@@ -39,7 +43,7 @@ const autoCreateProjectionsFiveDaysInAdvance = () => {
         createMovie(halls["IMAX 3D"], movies["Inception"], fiveDaysAfter, 2230, 16, 13);
         createMovie(halls["4DX"], movies["Doctor Strange"], fiveDaysAfter, 2000, 20, 17);
         createMovie(halls["4DX"], movies["The Dark Knight"], fiveDaysAfter, 2230, 20, 17);
-        
+
         console.log('shit created 5 days in advance for Monday!');
     } else if (dayOfweek === 2) { // TUESDAY
 
@@ -48,7 +52,21 @@ const autoCreateProjectionsFiveDaysInAdvance = () => {
     } else if (dayOfweek === 4) { // THURSDAY
 
     } else if (dayOfweek === 5) { // FRIDAY
+        createMovie(halls["2D-A"], movies["Shrek"], fiveDaysAfter, 1600, 12, 10);
+        createMovie(halls["2D-A"], movies["SpongeBob"], fiveDaysAfter, 1830, 12, 10);
+        createMovie(halls["2D-A"], movies["Inception"], fiveDaysAfter, 2100, 12, 10);
+        createMovie(halls["2D-B"], movies["Shrek"], fiveDaysAfter, 1730, 12, 10);
+        createMovie(halls["2D-B"], movies["Justice League"], fiveDaysAfter, 2000, 12, 10);
+        createMovie(halls["2D-B"], movies["Doctor Strange"], fiveDaysAfter, 2230, 12, 10);
+        createMovie(halls["2D-C"], movies["Doctor Strange"], fiveDaysAfter, 1600, 12, 10);
+        createMovie(halls["2D-C"], movies["Space Jam 2"], fiveDaysAfter, 1830, 12, 10);
+        createMovie(halls["2D-C"], movies["A Star Is Born"], fiveDaysAfter, 2100, 12, 10);
+        createMovie(halls["IMAX 3D"], movies["Doctor Strange"], fiveDaysAfter, 1900, 16, 13);
+        createMovie(halls["IMAX 3D"], movies["The Dark Knight"], fiveDaysAfter, 2230, 16, 13);
+        createMovie(halls["4DX"], movies["Doctor Strange"], fiveDaysAfter, 2000, 20, 17);
+        createMovie(halls["4DX"], movies["Spider-Man: No Way Home"], fiveDaysAfter, 2230, 20, 17);
 
+        console.log('shit created 5 days in advance for Friday!');
     } else if (dayOfweek === 6) { // SATURDAY
 
     } else {
