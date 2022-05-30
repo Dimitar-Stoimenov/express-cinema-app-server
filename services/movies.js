@@ -1,19 +1,19 @@
 const Movie = require('../models/Movie');
 
 async function getAll() {
-    return Movie.find({}).lean();
+    return Movie.find({}).sort({ "movieName": "asc" }).lean();
 }
 
 async function getTop() {
-    return Movie.find().sort({ "movieRating": -1 }).limit(8);
+    return Movie.find().sort({ "movieRating": -1 }).limit(8).lean();
 }
 
 async function getClassic() {
-    return Movie.find({ movieType: "classic" });
+    return Movie.find({ movieType: "classic" }).sort({ "movieName": "asc" }).lean();
 }
 
 async function getFamily() {
-    return Movie.find({ movieType: "family" });
+    return Movie.find({ movieType: "family" }).sort({ "movieName": "asc" }).lean();
 }
 
 async function create(data) {
