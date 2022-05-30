@@ -16,7 +16,7 @@ async function getProjectionsByDate(date) {
         month: date.getMonth(),
         year: date.getFullYear(),
     }
-    
+
     let nextDay = {
         date: next.getDate(),
         month: next.getMonth(),
@@ -31,7 +31,19 @@ async function getProjectionsByDate(date) {
     })
 }
 
+async function getProjectionsByMovieId(movieId) {
+    let today = new Date();
+
+    return Projection.find({
+        movieId,
+        date: {
+            $gte: today,
+        }
+    })
+}
+
 module.exports = {
     create,
     getProjectionsByDate,
+    getProjectionsByMovieId,
 };

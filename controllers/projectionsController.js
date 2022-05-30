@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { create, getProjectionsByDate } = require('../services/projections');
+const { create, getProjectionsByDate, getProjectionsByMovieId } = require('../services/projections');
 const { parseError, standartizeDate } = require('../util');
 
 router.get('/program/:date', async (req, res) => {
@@ -46,6 +46,12 @@ router.post('/create', async (req, res) => {
         const message = parseError(err);
         res.status(err.status || 400).json({ message });
     }
+});
+
+router.get('/:movieId', async (req, res) => {
+    const data = await getProjectionsByMovieId(req.params.movieId);
+
+    res.json(data);
 });
 
 module.exports = router;
