@@ -15,7 +15,7 @@ router.post('/create', async (req, res) => {
         length: req.body.length,
         movieType: req.body.movieType,
         cast: req.body.cast.split(',').map(x => x.trim()), //separate by coma
-        movieRating: 4,
+        movieRating: 4.1,
         voters: ["dummy"],
     };
 
