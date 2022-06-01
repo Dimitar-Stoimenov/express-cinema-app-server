@@ -37,10 +37,10 @@ async function start() {
         res.send('It works!');
     });
 
-    cron.schedule('10 14 * * *', () => {
-        autoCreateProjectionsFiveDaysInAdvance();
-        console.log('cron schedule ran successfully');
-    });
+    // cron.schedule('10 14 * * *', () => {
+    //     autoCreateProjectionsFiveDaysInAdvance();
+    //     console.log('cron schedule ran successfully');
+    // });
 
     app.listen(PORT, () => console.log(`REST Service is running on port ${PORT}...`));
 }
