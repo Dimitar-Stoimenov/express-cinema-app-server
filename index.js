@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cron = require('node-cron');
 
 const cors = require('./middlewares/cors');
 const { PORT, DB_CONNECTION_STRING } = require('./constants.js');
@@ -36,7 +37,10 @@ async function start() {
         res.send('It works!');
     });
 
-    // autoCreateProjectionsFiveDaysInAdvance();
+    cron.schedule('10 14 * * *', () => {
+        autoCreateProjectionsFiveDaysInAdvance();
+        console.log('cron schedule ran successfully');
+    });
 
     app.listen(PORT, () => console.log(`REST Service is running on port ${PORT}...`));
 }
