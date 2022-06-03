@@ -28,7 +28,7 @@ async function getProjectionsByDate(date) {
             $gte: new Date(day.year, day.month, day.date),
             $lt: new Date(nextDay.year, nextDay.month, nextDay.date),
         }
-    })
+    }).select("-occupiedSeats");
 }
 
 async function getProjectionsByMovieId(movieId) {
