@@ -53,6 +53,13 @@ router.get('/family-movies', async (req, res) => {
     res.json(data);
 });
 
+// this is incase the search is a whitespace;
+router.get('/search/', async (req, res) => {
+    const data = await getMoviesByName(" ");
+
+    res.json(data);
+});
+
 router.get('/search/:string', async (req, res) => {
     const data = await getMoviesByName(req.params.string);
 
