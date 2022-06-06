@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { create, getProjectionsByDate, getProjectionsByMovieId } = require('../services/projections');
+const { create, getProjectionsByDate, getProjectionsByMovieId, getProjectionById } = require('../services/projections');
 const { parseError, standartizeDate } = require('../util');
 
 router.get('/program/:date', async (req, res) => {
@@ -39,7 +39,7 @@ router.post('/create', async (req, res) => {
     };
 
     try {
-        const result = await create(data);  
+        const result = await create(data);
 
         res.status(201).json(result);
     } catch (err) {
@@ -48,8 +48,14 @@ router.post('/create', async (req, res) => {
     }
 });
 
-router.get('/:movieId', async (req, res) => {
+router.get('/movieId/:movieId', async (req, res) => {
     const data = await getProjectionsByMovieId(req.params.movieId);
+
+    res.json(data);
+});
+
+router.get('/id/:projectionId', async (req, res) => {
+    const data = await getProjectionById(req.params.projectionId);
 
     res.json(data);
 });

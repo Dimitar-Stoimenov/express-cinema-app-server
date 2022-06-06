@@ -27,10 +27,14 @@ const halls = {
     "2D-C": "6284f3309c7c4c9c40d83760",
 }
 
-const autoCreateProjectionsFiveDaysInAdvance = () => {
+const autoCreateProjectionsInAdvance = (daysInAdvance) => {
+    if (!daysInAdvance) {
+        return null;
+    }
+
     const today = new Date();
     let fiveDaysAfter = new Date(today);
-    fiveDaysAfter.setDate(today.getDate() + 5);
+    fiveDaysAfter.setDate(today.getDate() + daysInAdvance);
     let dayOfweek = fiveDaysAfter.getDay();
 
     if (dayOfweek === 0) { // SUNDAY
@@ -107,15 +111,15 @@ const autoCreateProjectionsFiveDaysInAdvance = () => {
     } else if (dayOfweek === 5) { // FRIDAY
         createMovie(halls["2D-A"], movies["Shrek"], fiveDaysAfter, 1600, 12, 10);
         createMovie(halls["2D-A"], movies["SpongeBob"], fiveDaysAfter, 1830, 12, 10);
-        createMovie(halls["2D-A"], movies["Inception"], fiveDaysAfter, 2100, 12, 10);
-        createMovie(halls["2D-B"], movies["Shrek"], fiveDaysAfter, 1730, 12, 10);
+        createMovie(halls["2D-A"], movies["Top Gun: Maverick"], fiveDaysAfter, 2100, 12, 10);
+        createMovie(halls["2D-B"], movies["Shrek 2"], fiveDaysAfter, 1730, 12, 10);
         createMovie(halls["2D-B"], movies["Justice League"], fiveDaysAfter, 2000, 12, 10);
-        createMovie(halls["2D-B"], movies["Doctor Strange"], fiveDaysAfter, 2230, 12, 10);
+        createMovie(halls["2D-B"], movies["Top Gun: Maverick"], fiveDaysAfter, 2230, 12, 10);
         createMovie(halls["2D-C"], movies["Doctor Strange"], fiveDaysAfter, 1600, 12, 10);
         createMovie(halls["2D-C"], movies["Space Jam"], fiveDaysAfter, 1830, 12, 10);
         createMovie(halls["2D-C"], movies["A Star Is Born"], fiveDaysAfter, 2100, 12, 10);
-        createMovie(halls["IMAX 3D"], movies["Doctor Strange"], fiveDaysAfter, 1900, 16, 13);
-        createMovie(halls["IMAX 3D"], movies["The Dark Knight"], fiveDaysAfter, 2230, 16, 13);
+        createMovie(halls["IMAX 3D"], movies["Top Gun: Maverick"], fiveDaysAfter, 1900, 16, 13);
+        createMovie(halls["IMAX 3D"], movies["Doctor Strange"], fiveDaysAfter, 2230, 16, 13);
         createMovie(halls["4DX"], movies["Doctor Strange"], fiveDaysAfter, 2000, 20, 17);
         createMovie(halls["4DX"], movies["Spider-Man: No Way Home"], fiveDaysAfter, 2230, 20, 17);
 
@@ -129,5 +133,5 @@ const autoCreateProjectionsFiveDaysInAdvance = () => {
 }
 
 module.exports = {
-    autoCreateProjectionsFiveDaysInAdvance,
+    autoCreateProjectionsInAdvance,
 }

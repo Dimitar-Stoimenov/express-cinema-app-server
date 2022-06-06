@@ -42,8 +42,15 @@ async function getProjectionsByMovieId(movieId) {
     })
 }
 
+async function getProjectionById(projectionId) {
+    return Projection.find({
+        _id: projectionId,
+    })
+}
+
 module.exports = {
     create,
     getProjectionsByDate,
     getProjectionsByMovieId,
+    getProjectionById,
 };

@@ -8,7 +8,7 @@ const { PORT, DB_CONNECTION_STRING } = require('./constants.js');
 const moviesController = require('./controllers/moviesController');
 const hallsController = require('./controllers/hallsController');
 const projectionsController = require('./controllers/projectionsController');
-const { autoCreateProjectionsFiveDaysInAdvance } = require('./services/autoCreateProjections');
+const { autoCreateProjectionsInAdvance } = require('./services/autoCreateProjections');
 
 start();
 
@@ -37,8 +37,8 @@ async function start() {
         res.send('It works!');
     });
 
-    // cron.schedule('10 14 * * *', () => {
-    //     autoCreateProjectionsFiveDaysInAdvance();
+    // cron.schedule('0 20 * * *', () => {
+    //     autoCreateProjectionsInAdvance(5);
     //     console.log('cron schedule ran successfully');
     // });
 
