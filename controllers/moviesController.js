@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAll, create, getById, update, getTop, getClassic, getFamily } = require('../services/movies');
+const { getAll, create, getById, update, getTop, getClassic, getFamily, getMoviesByName } = require('../services/movies');
 const { parseError } = require('../util');
 
 router.post('/create', async (req, res) => {
@@ -49,6 +49,12 @@ router.get('/classic-movies', async (req, res) => {
 
 router.get('/family-movies', async (req, res) => {
     const data = await getFamily();
+
+    res.json(data);
+});
+
+router.get('/search/:string', async (req, res) => {
+    const data = await getMoviesByName(req.params.string);
 
     res.json(data);
 });

@@ -34,6 +34,11 @@ async function getById(id) {
     return Movie.findById(id);
 }
 
+async function getMoviesByName(string) {
+    const regex = new RegExp(string, 'i');
+    return Movie.find({ movieName: { $regex: regex } });
+}
+
 module.exports = {
     getAll,
     getById,
@@ -42,5 +47,6 @@ module.exports = {
     getTop,
     getClassic,
     getFamily,
+    getMoviesByName,
     // remove,
 };
