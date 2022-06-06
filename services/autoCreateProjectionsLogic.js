@@ -1,7 +1,11 @@
 const { create } = require("./projections");
 const { standartizeDate } = require("../util");
 
-async function createMovie(hallId, movieId, date, hourAsNumber, regularPrice, studentsPrice) {
+async function createProjection(hallId, movieId, date, hourAsNumber, regularPrice, studentsPrice) {
+    if (movieId === "none") {
+        return;
+    }
+
     if (typeof date === "string") {
         date = new Date(standartizeDate(date));
     };
@@ -33,5 +37,5 @@ async function createMovie(hallId, movieId, date, hourAsNumber, regularPrice, st
 }
 
 module.exports = {
-    createMovie,
+    createProjection,
 }

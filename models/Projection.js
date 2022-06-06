@@ -13,11 +13,13 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Movie',
         autopopulate: true,
+        required: true,
     },
     hallId: {
         type: Schema.Types.ObjectId,
         ref: 'Hall',
         autopopulate: true,
+        required: true,
     },
     price: {
         regular: Number,
