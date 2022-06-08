@@ -68,13 +68,14 @@ const autoCreateProjectionsInAdvance = (daysInAdvance) => {
         createDailyProjections("Top Gun: Maverick", "The Batman", "Doctor Strange", "Interstellar", "How to train your dragon", "PAW Patrol", "SpongeBob", "none", "Justice League", "Fight Club")
         console.log('projections created in advance for Wednesday!');
     } else if (dayOfweek === 4) { // THURSDAY
-        createDailyProjections("The Batman", "Doctor Strange", "Top Gun: Maverick", "Django", "Shrek", "Minions Rise", "none", "Dune", "Spider-Man: Homecoming", "Joker");
+        createDailyProjections("The Batman", "Doctor Strange", "Top Gun: Maverick", "Joker", "Shrek 2", "Minions Rise", "Spider-Man: No Way Home", "Dune", "Spider-Man: Homecoming", "Django");
         console.log('projections created in advance for Thursday!');
     } else if (dayOfweek === 5) { // FRIDAY
-
-        // console.log('projections created in advance for Friday!');
+        createDailyProjections("Doctor Strange", "Top Gun: Maverick", "The Batman", "Top Gun Original", "Zootopia", "Shrek", "Space Jam 2", "Minions", "Dune", "Once Upon a Time");
+        console.log('projections created in advance for Friday!');
     } else if (dayOfweek === 6) { // SATURDAY
-
+        createDailyProjections("Top Gun: Maverick", "The Batman", "Doctor Strange", "Sin City", "Minions Rise", "Tom and Jerry", "Shrek 2", "PAW Patrol", "Spider-Man: Far from Home", "Joker");
+        console.log('projections created in advance for Saturday!');
     } else {
         return console.log('autoCreateProjectionsFiveDaysInAdvance failed - wrong day of week property passed...');
     }
