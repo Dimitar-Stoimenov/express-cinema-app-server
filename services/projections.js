@@ -45,7 +45,7 @@ async function getProjectionsByMovieId(movieId) {
 }
 
 async function getProjectionById(projectionId) {
-    return Projection.find({
+    return Projection.findOne({
         _id: projectionId,
     })
 }
