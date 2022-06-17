@@ -39,7 +39,7 @@ async function getProjectionsByMovieId(movieId) {
     return Projection.find({
         movieId,
         date: {
-            $gte: yesterday,
+            $gte: today,
         }
     })
 }
