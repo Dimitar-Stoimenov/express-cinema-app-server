@@ -33,8 +33,8 @@ async function getProjectionsByDate(date) {
 
 async function getProjectionsByMovieId(movieId) {
     let today = new Date();
-    let yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
+    // let yesterday = new Date(today);
+    // yesterday.setDate(today.getDate() - 1);
 
     return Projection.find({
         movieId,
