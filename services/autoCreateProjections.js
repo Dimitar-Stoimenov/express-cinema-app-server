@@ -37,6 +37,27 @@ const movies = {
     "Once Upon a Time": "629f5404e4bfa4113068c9e4",
 }
 
+function returnRandomFamilyMovie() {
+    let familyMoviesIdsArray = Object.keys({
+        "Shrek": "6283e28b90bd32f5df86fb89",
+        "Shrek 2": "629522ce246adbfbcfa1e9b1",
+        "Space Jam 2": "6290c7de2ad2c73e309c8023",
+        "SpongeBob": "6290cf1a2ad2c73e309c8031",
+        "Zootopia": "629de8f50bcc10cc5a05c21f",
+        "PAW Patrol": "629de9ca0bcc10cc5a05c224",
+        "How to train your dragon": "629dfc0d0bcc10cc5a05c23e",
+        "Tom and Jerry": "629f008886fdfa94374238dd",
+        "Minions": "629f04e489e9f35c3a4211b6",
+        "Minions Rise": "629f057589e9f35c3a4211b8",
+    });
+
+    function rand(items) {
+        return items[items.length * Math.random() | 0];
+    };
+
+    return rand(familyMoviesIdsArray);
+}
+
 const halls = {
     "IMAX 3D": "6284f1239c7c4c9c40d83758",
     "4DX": "6284f1d49c7c4c9c40d8375a",
@@ -89,6 +110,7 @@ const autoCreateProjectionsInAdvance = (daysInAdvance) => {
         createProjection(halls["2D-B"], movies[topBoxOffice], futureDay, 1730, 12, 10);
         createProjection(halls["2D-B"], movies[secondBox], futureDay, 2000, 12, 10);
         createProjection(halls["2D-B"], movies[classicMovie], futureDay, 2230, 12, 10);
+        createProjection(halls["2D-C"], movies[returnRandomFamilyMovie()], futureDay, 1445, 12, 10);
         createProjection(halls["2D-C"], movies[thirdBox], futureDay, 1700, 12, 10);
         createProjection(halls["2D-C"], movies[topBoxOffice], futureDay, 1930, 12, 10);
         createProjection(halls["2D-C"], movies[lateDayRandom], futureDay, 2130, 12, 10);
