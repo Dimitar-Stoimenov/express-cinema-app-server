@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { create, getProjectionsByDate, getProjectionsByMovieId, getProjectionById } = require('../services/projections');
+const { create, getProjectionsByDate, getProjectionsByMovieId, getProjectionById, pushTicket, pushSeats } = require('../services/projections');
 const { parseError, standartizeDate } = require('../util');
 
 router.get('/program/:date', async (req, res) => {
@@ -59,5 +59,16 @@ router.get('/id/:projectionId', async (req, res) => {
 
     res.json(data);
 });
+
+router.post('/add-ticket', async (req, res) => {
+    const data = {
+        ticketId: req.body.ticketId,
+        seatsObj: req.body.seatsObj,
+        projectionId: req.body.projectionId,
+    }
+
+    await pushSeats(data.projectionId, data.seatsObj);
+    await pushTicket(data.projectionId, data.ticketId);
+})
 
 module.exports = router;

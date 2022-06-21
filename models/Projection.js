@@ -26,17 +26,51 @@ const schema = new Schema({
         students: Number,
     },
     occupiedSeats: {
-        "row1": [],
-        "row2": [],
-        "row3": [],
-        "row4": [],
-        "row5": [],
-        "row6": [],
-        "row7": [],
-        "row8": [],
-        "row9": [],
-        "row10": [],
-    }
+        "row1": [{
+            type: Number,
+            unique: true,
+        }],
+        "row2": [{
+            type: Number,
+            unique: true,
+        }],
+        "row3": [{
+            type: Number,
+            unique: true,
+        }],
+        "row4": [{
+            type: Number,
+            unique: true,
+        }],
+        "row5": [{
+            type: Number,
+            unique: true,
+        }],
+        "row6": [{
+            type: Number,
+            unique: true,
+        }],
+        "row7": [{
+            type: Number,
+            unique: true,
+        }],
+        "row8": [{
+            type: Number,
+            unique: true,
+        }],
+        "row9": [{
+            type: Number,
+            unique: true,
+        }],
+        "row10": [{
+            type: Number,
+            unique: true,
+        }],
+    },
+    issuedTickets: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Ticket',
+    }]
 });
 
 schema.plugin(require('mongoose-autopopulate'));

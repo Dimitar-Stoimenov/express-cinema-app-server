@@ -8,6 +8,7 @@ const { PORT, DB_CONNECTION_STRING } = require('./constants.js');
 const moviesController = require('./controllers/moviesController');
 const hallsController = require('./controllers/hallsController');
 const projectionsController = require('./controllers/projectionsController');
+const ticketsController = require('./controllers/ticketsController');
 const { autoCreateProjectionsInAdvance } = require('./services/autoCreateProjections');
 
 start();
@@ -32,6 +33,7 @@ async function start() {
     app.use('/movies', moviesController);
     app.use('/halls', hallsController);
     app.use('/projections', projectionsController);
+    app.use('/tickets', ticketsController);
 
     app.get('/', (req, res) => {
         res.send('It works!');
