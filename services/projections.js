@@ -8,14 +8,14 @@ async function create(data) {
 }
 
 async function pushTicket(projectionId, ticketId) {
-    Projection.findOneAndUpdate(
+    return Projection.findOneAndUpdate(
         { _id: projectionId },
         { $push: { issuedTickets: ticketId } },
         function (error, success) {
             if (error) {
-                console.log(error);
+               return error;
             } else {
-                // console.log('added ticket to projection');
+                return success;
             }
         });
 }
@@ -33,14 +33,14 @@ async function pushSeats(projectionId, seatsObj) {
         newSeatsObj[row].push(...seatsArr);
     })
 
-    Projection.findOneAndUpdate(
+    return Projection.findOneAndUpdate(
         { _id: projectionId },
         { $set: { occupiedSeats: newSeatsObj } },
         function (error, success) {
             if (error) {
-                console.log(error);
+                return error;
             } else {
-                // console.log('added seats to projection');
+                return success;
             }
         });
 

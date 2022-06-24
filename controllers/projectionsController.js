@@ -67,8 +67,15 @@ router.post('/add-ticket', async (req, res) => {
         projectionId: req.body.projectionId,
     }
 
-    await pushSeats(data.projectionId, data.seatsObj);
-    await pushTicket(data.projectionId, data.ticketId);
+    try {
+        const seatsResult = await pushSeats(data.projectionId, data.seatsObj);
+        const ticketResult = await pushTicket(data.projectionId, data.ticketId);
+
+        res.status(201).json({ seatsResult, ticketResult });
+    } catch (err) {
+        const message = parseError(err);
+        res.status(402).json({ message });
+    }
 })
 
 module.exports = router;
