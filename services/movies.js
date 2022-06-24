@@ -48,5 +48,4 @@ module.exports = {
     getClassic,
     getFamily,
     getMoviesByName,
-    // remove,
 };
