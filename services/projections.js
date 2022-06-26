@@ -7,20 +7,7 @@ async function create(data) {
     return result;
 }
 
-async function pushTicket(projectionId, ticketId) {
-    return Projection.findOneAndUpdate(
-        { _id: projectionId },
-        { $push: { issuedTickets: ticketId } },
-        function (error, success) {
-            if (error) {
-               return error;
-            } else {
-                return success;
-            }
-        });
-}
-
-async function pushSeats(projectionId, seatsObj) {
+async function pushSeatsAndTickets(projectionId, seatsObj, ticketId) {
     let data = await getProjectionById(projectionId);
     let newSeatsObj = data.occupiedSeats;
 
@@ -35,7 +22,10 @@ async function pushSeats(projectionId, seatsObj) {
 
     return Projection.findOneAndUpdate(
         { _id: projectionId },
-        { $set: { occupiedSeats: newSeatsObj } },
+        {
+            $set: { occupiedSeats: newSeatsObj },
+            $push: { issuedTickets: ticketId }
+        },
         function (error, success) {
             if (error) {
                 return error;
@@ -108,6 +98,5 @@ module.exports = {
     getProjectionsByDate,
     getProjectionsByMovieId,
     getProjectionById,
-    pushTicket,
-    pushSeats,
+    pushSeatsAndTickets,
 };
