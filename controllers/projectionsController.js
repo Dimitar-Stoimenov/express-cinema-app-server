@@ -62,9 +62,9 @@ router.get('/id/:projectionId', async (req, res) => {
 
 router.post('/add-ticket', async (req, res) => {
     const data = {
+        projectionId: req.body.projectionId,
         ticketId: req.body.ticketId,
         seatsObj: req.body.seatsObj,
-        projectionId: req.body.projectionId,
     }
 
     try {
