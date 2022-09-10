@@ -11,7 +11,7 @@
     "mongoose": "^6.3.3",
     "mongoose-autopopulate": "^0.16.1",
     "node-cron": "^3.0.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.19"
   },
   "devDependencies": {},
   "scripts": {

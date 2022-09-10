@@ -67,7 +67,7 @@ const halls = {
 }
 
 const autoCreateProjectionsInAdvance = (daysInAdvance) => {
-    if (!daysInAdvance) {
+    if (!daysInAdvance && daysInAdvance !== 0) {
         return null;
     }
 
@@ -102,12 +102,31 @@ const autoCreateProjectionsInAdvance = (daysInAdvance) => {
     }
 
     function createDailyProjections(topBoxOffice, secondBox, thirdBox, classicMovie, familyOne, familyTwo, familyThree, earlyDayRandom, midDayRandom, lateDayRandom) {
+        function randomizeHour(hour) {
+            let arr = [];
+            for (let i = 0; i < 4; i++) {
+                let randomized = hour - 15 + i * 15;
+
+                let split = randomized.toString().split('');
+                if (split[2] > 5) {
+                    split[2] = 4;
+                }
+                let result = Number(split.join(''));
+
+                arr.push(result);
+            };
+
+            let randomHour = arr[Math.floor(arr.length * Math.random())];
+
+            return randomHour;
+        }
+
         createProjection(halls["2D-A"], movies[familyOne], futureDay, 1400, 12, 10);
         createProjection(halls["2D-A"], movies[familyTwo], futureDay, 1600, 12, 10);
-        createProjection(halls["2D-A"], movies[midDayRandom], futureDay, 1830, 12, 10);
+        createProjection(halls["2D-A"], movies[midDayRandom], futureDay, randomizeHour(1830), 12, 10);
         createProjection(halls["2D-A"], movies[thirdBox], futureDay, 2100, 12, 10);
-        createProjection(halls["2D-B"], movies[earlyDayRandom], futureDay, 1500, 12, 10);
-        createProjection(halls["2D-B"], movies[topBoxOffice], futureDay, 1730, 12, 10);
+        createProjection(halls["2D-B"], movies[earlyDayRandom], futureDay, randomizeHour(1500), 12, 10);
+        createProjection(halls["2D-B"], movies[topBoxOffice], futureDay, randomizeHour(1730), 12, 10);
         createProjection(halls["2D-B"], movies[secondBox], futureDay, 2000, 12, 10);
         createProjection(halls["2D-B"], movies[classicMovie], futureDay, 2230, 12, 10);
         createProjection(halls["2D-C"], movies[returnRandomFamilyMovie()], futureDay, 1445, 12, 10);
@@ -115,11 +134,11 @@ const autoCreateProjectionsInAdvance = (daysInAdvance) => {
         createProjection(halls["2D-C"], movies[topBoxOffice], futureDay, 1930, 12, 10);
         createProjection(halls["2D-C"], movies[lateDayRandom], futureDay, 2130, 12, 10);
         createProjection(halls["IMAX 3D"], movies[familyThree], futureDay, 1630, 16, 13);
-        createProjection(halls["IMAX 3D"], movies[secondBox], futureDay, 1900, 16, 13);
-        createProjection(halls["IMAX 3D"], movies[topBoxOffice], futureDay, 2200, 16, 13);
-        createProjection(halls["4DX"], movies[thirdBox], futureDay, 1800, 20, 17);
+        createProjection(halls["IMAX 3D"], movies[secondBox], futureDay, randomizeHour(1900), 16, 13);
+        createProjection(halls["IMAX 3D"], movies[topBoxOffice], futureDay, randomizeHour(2200), 16, 13);
+        createProjection(halls["4DX"], movies[thirdBox], futureDay, randomizeHour(1800), 20, 17);
         createProjection(halls["4DX"], movies[topBoxOffice], futureDay, 2000, 20, 17);
-        createProjection(halls["4DX"], movies[secondBox], futureDay, 2230, 20, 17);
+        createProjection(halls["4DX"], movies[secondBox], futureDay, randomizeHour(2230), 20, 17);
     }
 }
 
